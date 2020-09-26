@@ -2,6 +2,9 @@
   "name": "dd-ui",
   "version": "0.1.0",
   "private": true,
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "build/index.d.ts",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.30",
     "@fortawesome/free-solid-svg-icons": "^5.14.0",
@@ -23,11 +26,14 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "npm run clean && npm run build-ts && npm run build-css",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "sb": "start-storybook -p 6006 -s public",
+    "build-sb": "build-storybook -s public",
+    "build-ts": "tsc -p tsconfig.build.json",
+    "build-css": "node-sass ./src/styles/index.scss ./dist/index.css",
+    "clean": "rimraf ./dist"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -57,6 +63,7 @@
     "babel-loader": "^8.1.0",
     "classnames": "^2.2.6",
     "node-sass": "^4.14.1",
-    "react-is": "^16.13.1"
+    "react-is": "^16.13.1",
+    "rimraf": "^3.0.2"
   }
 }
