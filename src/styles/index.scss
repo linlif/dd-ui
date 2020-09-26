@@ -1,0 +1,24 @@
+// normalize
+@import 'normalize-scss';
+@include normalize();
+
+// config
+@import "variables";
+
+// reboot
+@import "reboot";
+
+// mixins
+@import "mixins";
+
+// button
+@import "../components/Button/button";
+
+// animation
+@import "./_animation.css";
+
+// menu
+@import "../components/Menu/menu";
+
+// icon
+@import "../components//Icon/style"
