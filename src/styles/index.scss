@@ -1,6 +1,7 @@
 // normalize
 @import '../../node_modules/normalize-scss/sass/normalize';
 @include normalize();
+// @import-normalize;
 
 // config
 @import "variables";
@@ -15,7 +16,7 @@
 @import "../components/Button/button";
 
 // animation
-@import "./_animation.css";
+@import "./_animation.scss";
 
 // menu
 @import "../components/Menu/menu";
