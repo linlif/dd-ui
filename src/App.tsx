@@ -24,7 +24,7 @@ function App() {
             {/* <Icon icon='coffee' size='6x' theme='danger'/> */}
             <section className="components-demo">
                 <h3>按钮类型</h3>
-                <Button btnType={ButtonType.Primary}>Primary</Button>
+                {/* <Button btnType={ButtonType.Primary}>Primary</Button>
                 <Button onClick={() => alert(111)} btnType={ButtonType.Default}>Default</Button>
                 <Button btnType={ButtonType.Danger}>Danger</Button>
                 <Button btnType={ButtonType.Dashed}>Dashed</Button>
@@ -42,7 +42,7 @@ function App() {
                     <Button btnType={ButtonType.Danger} disabled >Danger-disabled</Button>
                     <Button btnType={ButtonType.Dashed} disabled >Dashed-disabled</Button>
                     <Button btnType={ButtonType.Link} disabled>Link-disabled</Button>
-                </div>
+                </div> */}
             </section>
             <section className="components-demo">
                 <div>

@@ -1,0 +1,8 @@
+language: nodejs
+nodejs: 
+  - "stable"
+cashe: 
+  directories:
+  - node_moddules
+env:
+  - CI=true
