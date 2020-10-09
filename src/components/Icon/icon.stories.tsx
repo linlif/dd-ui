@@ -30,6 +30,7 @@ const Template1: Story<IconProps> = (args) => (
         <Icon {...args} icon="meh" />
         <Icon {...args} icon="meh-blank" />
         <Icon {...args} icon="meh-rolling-eyes" />
+        <Icon {...args} icon="spinner" />
         <div style={{ marginTop: 30 }}>
             {`更多图标>>`}
             <a href="https://fontawesome.com/icons?d=gallery&s=solid&m=free" target="_blank">{`请点击这里`}</a>

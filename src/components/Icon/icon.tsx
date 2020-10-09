@@ -22,7 +22,7 @@ const Icon: React.FC<IconProps> = (props) => {
     })
 
     return (
-        <FontAwesomeIcon className={classes} {...restProps} />
+        <FontAwesomeIcon className={classes} {...restProps}/>
     )
 }
 

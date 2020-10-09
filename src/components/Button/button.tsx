@@ -1,5 +1,6 @@
 import React, { ReactNode, ButtonHTMLAttributes, AnchorHTMLAttributes, FC } from 'react'
 import classNames from 'classnames'
+import Icon, { IconProps } from '../Icon'
 
 // export enum ButtonSize {
 //     Medium = 'md',
@@ -15,7 +16,8 @@ import classNames from 'classnames'
 // }
 
 export type ButtonType = 'primary' | 'default' | 'danger' | 'link' | 'dash'
-export type ButtonSize = 'lg' | 'md' | 'sm' 
+export type ButtonSize = 'lg' | 'md' | 'sm'
+export type Shape = 'circle' | 'round' | 'normal'
 
 interface BaseButtonProps {
     className?: string;
@@ -25,7 +27,11 @@ interface BaseButtonProps {
     children: ReactNode,
     href?: string,
     backgroundColor?: string,
-    onClick: () => void
+    onClick: () => void,
+    loading?: boolean,
+    icon?: IconProps,
+    block?: boolean | string,
+    shape?: Shape
 }
 
 type NativeButtonProps = BaseButtonProps & ButtonHTMLAttributes<HTMLElement>
@@ -34,7 +40,7 @@ type AnchorButtonProps = BaseButtonProps & AnchorHTMLAttributes<HTMLElement>
 export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>
 
 export const Button: FC<ButtonProps> = (props) => {
-    const {
+    let {
         btnType,
         className,
         size,
@@ -42,13 +48,27 @@ export const Button: FC<ButtonProps> = (props) => {
         children,
         href,
         backgroundColor,
+        loading,
+        icon,
+        block,
+        shape,
         ...restProps
     } = props
+
+    // loading 时不能操作
+    if (loading) {
+        disabled = true
+    }
 
     const classes = classNames('btn', className, {
         [`btn-${btnType}`]: btnType,
         [`btn-${size}`]: size,
-        'disabled': (btnType === 'link') && disabled
+        [`btn-block`]: block,
+        [`btn-inline`]: !block,
+        [`btn-circle`]: shape === 'circle' && !children,
+        [`btn-round`]: shape === 'round',
+        [`btn-icon-only`]: !children,
+        'disabled': btnType === 'link' && disabled
     })
 
     if (btnType === 'link' && !disabled) {
@@ -58,7 +78,16 @@ export const Button: FC<ButtonProps> = (props) => {
                 href={href}
                 {...restProps}
             >
-                {children}
+                {
+                    (icon || loading) ? <Icon icon={loading ? "spinner" : icon} spin={loading} /> : ''
+                }
+                {
+                    children && (
+                        <span style={{ marginLeft: 5 }}>
+                            {children}
+                        </span>
+                    )
+                }
             </a>
         )
     } else {
@@ -69,7 +98,16 @@ export const Button: FC<ButtonProps> = (props) => {
                 style={{ backgroundColor }}
                 {...restProps}
             >
-                {children}
+                {
+                    (icon || loading) ? <Icon icon={loading ? "spinner" : icon} spin={loading} /> : ''
+                }
+                {
+                    children && (
+                        <span style={{ marginLeft: 5 }}>
+                            {children}
+                        </span>
+                    )
+                }
             </button>
         )
     }
