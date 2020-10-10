@@ -1,4 +1,4 @@
-import React, { ReactNode, ButtonHTMLAttributes, AnchorHTMLAttributes, FC } from 'react'
+import React, { ReactNode, ButtonHTMLAttributes, AnchorHTMLAttributes, FC, useEffect, useState } from 'react'
 import classNames from 'classnames'
 import Icon, { IconProps } from '../Icon'
 
@@ -28,6 +28,8 @@ interface BaseButtonProps {
     href?: string,
     backgroundColor?: string,
     onClick: () => void,
+    onMouseDown: () => void,
+    onMouseUp: () => void,
     loading?: boolean,
     icon?: IconProps,
     block?: boolean | string,
@@ -40,6 +42,8 @@ type AnchorButtonProps = BaseButtonProps & AnchorHTMLAttributes<HTMLElement>
 export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>
 
 export const Button: FC<ButtonProps> = (props) => {
+    const [clicked, setClicked] = useState(false)
+
     let {
         btnType,
         className,
@@ -52,6 +56,7 @@ export const Button: FC<ButtonProps> = (props) => {
         icon,
         block,
         shape,
+        onClick,
         ...restProps
     } = props
 
@@ -68,14 +73,26 @@ export const Button: FC<ButtonProps> = (props) => {
         [`btn-circle`]: shape === 'circle' && !children,
         [`btn-round`]: shape === 'round',
         [`btn-icon-only`]: !children,
+        ['btn-clicked']: clicked,
         'disabled': btnType === 'link' && disabled
     })
+
+    function handleClick() {
+        let timer
+        onClick && onClick()
+        setClicked(true)
+        clearTimeout(timer)
+        timer = setTimeout(() => {
+            setClicked(false)
+        }, 600);
+    }
 
     if (btnType === 'link' && !disabled) {
         return (
             <a
                 className={classes}
                 href={href}
+                onClick={onClick}
                 {...restProps}
             >
                 {
@@ -95,6 +112,7 @@ export const Button: FC<ButtonProps> = (props) => {
             <button
                 className={classes}
                 disabled={disabled}
+                onClick={handleClick}
                 style={{ backgroundColor }}
                 {...restProps}
             >

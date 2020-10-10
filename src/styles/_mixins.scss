@@ -33,3 +33,34 @@
         border-color: $border;
     }
 }
+
+@mixin keyframes($animationName) {
+    @-webkit-keyframes #{$animationName} {
+        @content;
+    }
+    @-moz-keyframes #{$animationName} {
+        @content;
+    }
+    @-o-keyframes #{$animationName} {
+        @content;
+    }
+    @keyframes #{$animationName} {
+        @content;
+    }
+}
+
+@mixin clickAnimation($color, $borderRadius, $animationName) {
+    border-radius: $borderRadius;
+    animation: $animationName 0.6s;
+    @include keyframes($animationName) {
+        0% {
+            box-shadow: 0 0 0 0 rgba($color, 0.4);
+        }
+        70% {
+            box-shadow: 0 0 0 5px rgba($color, 0);
+        }
+        100% {
+            box-shadow: 0 0 0 0 rgba($color, 0);
+        }
+    }
+}

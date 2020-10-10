@@ -83,7 +83,15 @@ button:not(.btn-inline) + button:not(.btn-inline) {
 }
 .btn-danger {
     @include button-style($danger, $danger, $white);
+    &.btn-clicked {
+        @include clickAnimation($danger, 2px, pulseAniDanger);
+    }
 }
+
+.btn-clicked {
+    @include clickAnimation($primary, 2px, pulseAniPrimary);
+}
+
 .btn-dash {
     @include button-style($white, $gray-400, $body-color, $white, $primary, $primary);
     border-width: 1px;
