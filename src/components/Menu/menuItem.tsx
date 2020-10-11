@@ -1,18 +1,21 @@
 import React, { useContext } from 'react'
 import classNames from 'classnames'
 import { MenuContent } from './menu'
+import { icon } from '@fortawesome/fontawesome-svg-core'
 
-type MenuMode = 'horizontal' | 'vertical'
+export type MenuMode = 'horizontal' | 'vertical'
 
 export interface IMenuItemsProps {
     index?: string;
     disabled?: boolean;
     className?: string;
     style?: React.CSSProperties;
+    deeps?: number;
+    icon?: React.ReactElement | React.FC
 }
 
 const MenuItem: React.FC<IMenuItemsProps> = (props) => {
-    const { index, className, style, disabled, children } = props
+    const { index, className, style, disabled, children, deeps = 1, icon: Icon } = props
     const context = useContext(MenuContent)
     const classes = classNames('dd-menuitem', className, {
         'is-disabled': disabled,
@@ -23,9 +26,11 @@ const MenuItem: React.FC<IMenuItemsProps> = (props) => {
             context.onSelect(index)
         }
     }
+
     return (
-        <li className={classes} style={{ ...style }} onClick={handleClick} data-idx={index}>
-            {children}
+        <li className={classes} style={context.mode === 'vertical' ? { ...style, paddingLeft: deeps * 8 + 24, paddingRight: deeps * 8 + 24 } : { ...style }} onClick={disabled ? () => { } : handleClick} data-idx={index}>
+            {typeof Icon === 'function' ? <Icon /> : Icon}
+            <span style={Icon ? { marginLeft: 5 } : {}}>{children}</span>
         </li>
     )
 }

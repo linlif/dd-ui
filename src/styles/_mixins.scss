@@ -51,7 +51,7 @@
 
 @mixin clickAnimation($color, $borderRadius, $animationName) {
     border-radius: $borderRadius;
-    animation: $animationName 0.6s;
+    animation: $animationName 1s;
     @include keyframes($animationName) {
         0% {
             box-shadow: 0 0 0 0 rgba($color, 0.4);

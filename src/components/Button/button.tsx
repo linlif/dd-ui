@@ -28,8 +28,6 @@ interface BaseButtonProps {
     href?: string,
     backgroundColor?: string,
     onClick: () => void,
-    onMouseDown: () => void,
-    onMouseUp: () => void,
     loading?: boolean,
     icon?: IconProps,
     block?: boolean | string,
@@ -84,7 +82,7 @@ export const Button: FC<ButtonProps> = (props) => {
         clearTimeout(timer)
         timer = setTimeout(() => {
             setClicked(false)
-        }, 600);
+        }, 500);
     }
 
     if (btnType === 'link' && !disabled) {
