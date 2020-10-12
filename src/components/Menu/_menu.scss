@@ -53,7 +53,7 @@
             position: absolute;
             top: 50%;
             right: 16px;
-            transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+            transition: transform 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
             &::before,
             &::after {
                 display: inline-block;
@@ -87,15 +87,17 @@
 .menu-horizontal {
     flex-direction: row;
     .dd-menuitem {
+        position: relative;
         margin: 0 $menu-item-margin-x;
-        // padding: $menu-item-padding-y 0;
         border-bottom: $menu-item-active-border-width solid transparent;
         &.is-active {
-            border-bottom: $menu-item-active-border-width solid $menu-item-active-color;
+            // border-bottom: $menu-item-active-border-width solid $menu-item-active-color;
+            transform: scaleX(1);
             color: $menu-item-active-color;
         }
         &:hover {
-            border-bottom: $menu-item-active-border-width solid $menu-item-active-color;
+            // border-bottom: $menu-item-active-border-width solid $menu-item-active-color;
+            transform: scaleX(1);
         }
         &.submenu-item {
             border-bottom: $menu-item-active-border-width solid transparent;
@@ -104,7 +106,6 @@
             }
             &:hover,
             &:focus {
-                // border-bottom: $menu-item-active-border-width solid $menu-item-active-color;
                 color: $menu-item-active-color;
             }
             .dd-submenu-horizontal {
@@ -125,6 +126,9 @@
                     &.is-active {
                         background-color: lighten($menu-item-active-color, 42%);
                         color: $menu-item-active-color;
+                        &::after {
+                            transform: scaleX(0);
+                        }
                     }
                     &:hover {
                         color: $menu-item-active-color;
@@ -135,6 +139,19 @@
         .dd-submenu-arrow {
             right: -18px;
         }
+        &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -3px;
+            border-bottom: $menu-item-active-border-width solid $menu-item-active-color;
+            transform: scaleX(0);
+            transition: transform 0.1s ease-in-out;
+        }
+        &.is-active::after {
+            transform: scaleX(1);
+        }
     }
 }
 
@@ -143,37 +160,42 @@
     border-bottom: 0;
     border-right: $menu-border-width solid $menu-border-color;
     .dd-menuitem {
+        position: relative;
         margin: $menu-item-margin-y 0;
         padding: $menu-item-padding-y 0;
         border-right: $menu-item-active-border-width solid transparent;
         border-bottom: 0;
         &.is-active {
-            border-right: $menu-item-active-border-width solid $menu-item-active-color;
             color: $menu-item-active-color;
+            background-color: lighten($menu-item-active-color, 42%);
+            &::after {
+                transform: scaleY(1);
+            }
         }
         &:hover {
             border-bottom: 0;
         }
         &.submenu-item {
             border-right: 0;
-            // &.is-active,
-            // &:hover {
-            //     background-color: transparent !important;
-            //     .dd-submenu-arrow {
-            //         &::before {
-            //             background-image: linear-gradient(90deg, #1890ff, #1890ff) !important;
-            //         }
-            //         &::after {
-            //             background-image: linear-gradient(90deg, #1890ff, #1890ff);
-            //         }
-            //     }
-            // }
+            margin: $menu-item-margin-y 0;
+            padding: 0;
+            &.is-active {
+                background-color: transparent;
+                color: $menu-item-active-color;
+                &::after {
+                    transform: scaleY(0);
+                }
+            }
+            .submenu-title {
+                padding: $menu-item-padding-y 0;
+            }
             .dd-submenu-vertical {
                 position: relative;
                 color: $body-color;
                 left: 0;
                 right: 0;
-                margin-top: $menu-item-padding-y * 1.8;
+                // margin-top: $menu-item-padding-y * 1.8;
+                margin: $menu-item-margin-y 0;
                 list-style: none;
                 border-radius: $menu-border-radius;
                 padding-left: 0;
@@ -184,6 +206,9 @@
                     border-left: 0;
                     &.is-active {
                         background-color: lighten($menu-item-active-color, 42%);
+                        &::after {
+                            transform: scaleY(1);
+                        }
                     }
                     &:hover {
                         border-left: 0;
@@ -191,42 +216,15 @@
                 }
             }
         }
-        // &.submenu-open {
-        //     .dd-submenu-arrow {
-        //         &::before {
-        //             transform: rotate(45deg) translateX(2px);
-        //             // background-image: linear-gradient(90deg, #1890ff, #1890ff) !important;
-        //         }
-        //         &::after {
-        //             transform: rotate(-45deg) translateX(-2px);
-        //             // background-image: linear-gradient(90deg, #1890ff, #1890ff);
-        //         }
-        //     }
-        // }
-        // .dd-submenu-arrow {
-        //     display: inline-block;
-        //     width: 10px;
-        //     margin-left: 5;
-        //     position: absolute;
-        //     top: 50%;
-        //     right: 16px;
-        //     transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-        //     &::before,
-        //     &::after {
-        //         display: inline-block;
-        //         content: "";
-        //         position: absolute;
-        //         width: 6px;
-        //         height: 1.5px;
-        //         border-radius: 2px;
-        //         background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85));
-        //     }
-        //     &::before {
-        //         transform: rotate(-45deg) translateX(2px);
-        //     }
-        //     &::after {
-        //         transform: rotate(45deg) translateX(-2px);
-        //     }
-        // }
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: -3px;
+            border-right: $menu-item-active-border-width solid $menu-item-active-color;
+            transform: scaleY(0);
+            transition: transform 0.1s ease-in-out;
+        }
     }
 }

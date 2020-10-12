@@ -77,10 +77,10 @@ const SubMenu: React.FC<ISubmenuProps> = ({ index, title, className, children, d
         return (
             <CSSTransition
                 in={subMenuOpen}
-                timeout={200}
-                classNames='zoom-in-top'
+                timeout={600}
+                classNames='slide-in-top'
                 appear
-                unmountOnExit
+            // unmountOnExit
             >
                 <ul className={subMenuClassNames} >
                     {childrenComponent}
@@ -90,7 +90,7 @@ const SubMenu: React.FC<ISubmenuProps> = ({ index, title, className, children, d
     }
     return (
         <li key={index} className={classes} {...hoverEvents}>
-            <div style={context.mode === 'vertical' ? { position: 'relative', paddingLeft: propDeeps * 8 + 24, paddingRight: propDeeps * 8 + 24 } : { position: 'relative' }} onClick={handleClick} {...clickEvents}>
+            <div className="submenu-title" onClick={handleClick} {...clickEvents} style={context.mode === 'vertical' ? { position: 'relative', paddingLeft: propDeeps * 8 + 24, paddingRight: propDeeps * 8 + 24 } : { position: 'relative' }} >
                 {typeof IconProp === 'function' ? <IconProp /> : IconProp}
                 <span style={IconProp ? { marginLeft: 5 } : {}}>{title}</span>
                 {/* <Icon icon='chevron-down' style={{ marginLeft: 5, position: 'absolute', right: 16 }} /> */}
