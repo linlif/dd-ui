@@ -6,6 +6,10 @@ import Menu from './components/Menu/menu'
 import MenuItem from './components/Menu/menuItem'
 import Submenu from './components/Menu/subMenu'
 import Icon from './components/Icon/icon'
+import WeekPicker from './components/WeekPicker'
+
+import './styles/index.scss'; // 引入样式
+
 
 // https://github.com/FortAwesome/react-fontawesome#build-a-library-to-reference-icons-throughout-your-app-more-conveniently
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -21,28 +25,29 @@ function App() {
     return (
         <div className="App">
             {/* <FontAwesomeIcon icon={faCoffee} size="10x"/> */}
-            {/* <Icon icon='coffee' size='6x' theme='danger'/> */}
+            <Icon icon='coffee' size='6x' theme='danger' />
+            <WeekPicker onChange={(v) => console.log('onChange~~', v)} />
             <section className="components-demo">
                 <h3>按钮类型</h3>
-                {/* <Button btnType={ButtonType.Primary}>Primary</Button>
-                <Button onClick={() => alert(111)} btnType={ButtonType.Default}>Default</Button>
-                <Button btnType={ButtonType.Danger}>Danger</Button>
-                <Button btnType={ButtonType.Dashed}>Dashed</Button>
-                <Button btnType={ButtonType.Link} href="https:www.baidu.com" target="_blank">Link</Button>
+                <Button btnType='primary'>Primary</Button>
+                <Button onClick={() => alert(111)} btnType='default'>Default</Button>
+                <Button btnType='danger'>Danger</Button>
+                <Button btnType='dash'>Dashed</Button>
+                <Button btnType='link' href="https:www.baidu.com" target="_blank">Link</Button>
                 <div>
                     <h3>按钮大小</h3>
-                    <Button btnType={ButtonType.Primary} size={ButtonSize.Large}>Large</Button>
-                    <Button btnType={ButtonType.Primary} size={ButtonSize.Medium}>Medium</Button>
-                    <Button btnType={ButtonType.Primary} size={ButtonSize.Small}>Small</Button>
+                    <Button btnType='primary' size='lg'>Large</Button>
+                    <Button btnType='primary' size='md'>Medium</Button>
+                    <Button btnType='primary' size='sm'>Small</Button>
                 </div>
                 <div>
                     <h3>按钮状态</h3>
-                    <Button btnType={ButtonType.Primary} disabled >Primary-disabled</Button>
-                    <Button btnType={ButtonType.Default} disabled >Default-disabled</Button>
-                    <Button btnType={ButtonType.Danger} disabled >Danger-disabled</Button>
-                    <Button btnType={ButtonType.Dashed} disabled >Dashed-disabled</Button>
-                    <Button btnType={ButtonType.Link} disabled>Link-disabled</Button>
-                </div> */}
+                    <Button btnType='primary' disabled >Primary-disabled</Button>
+                    <Button btnType='default' disabled >Default-disabled</Button>
+                    <Button btnType='danger' disabled >Danger-disabled</Button>
+                    <Button btnType='dash' disabled >Dashed-disabled</Button>
+                    <Button btnType='link' disabled>Link-disabled</Button>
+                </div>
             </section>
             <section className="components-demo">
                 <div>
@@ -61,7 +66,7 @@ function App() {
                 </div>
                 <div>
                     <h3>垂直菜单</h3>
-                    <Menu defaultIndex={'0'} onSelect={handleSelect} mode='vertical'>
+                    <Menu defaultIndex={'0'} onSelect={handleSelect} mode='vertical' defaultOpenSubMenus={['2']}>
                         <MenuItem >
                             menu-item1
                     </MenuItem>
@@ -76,7 +81,7 @@ function App() {
                 </div>
                 <div>
                     <h3>水平子菜单</h3>
-                    <Menu defaultIndex={'0'} onSelect={handleSelect} mode='horizontal' defaultOpenSubMenus={['2']}>
+                    <Menu defaultIndex={'0'} onSelect={handleSelect} mode='horizontal'>
                         <MenuItem >
                             menu-item1
                     </MenuItem>

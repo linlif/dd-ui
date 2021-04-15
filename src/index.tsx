@@ -16,7 +16,10 @@
 // // Learn more about service workers: https://bit.ly/CRA-PWA
 // serviceWorker.unregister();
 
-// import { FontAwesomeIcon, FontAwesomeIconProps } from '@fortawesome/react-fontawesome'
+
+// 打包成库请注释以上内容并打开以下内容
+
+import { FontAwesomeIcon, FontAwesomeIconProps } from '@fortawesome/react-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 library.add(fas)
@@ -24,4 +27,5 @@ library.add(fas)
 export { default as Button } from './components/Button'
 export { default as Menu } from './components/Menu'
 export { default as Icon } from './components/Icon'
+export { default as WeekPicker } from './components/WeekPicker'
 

@@ -15,14 +15,16 @@ export interface IconProps extends FontAwesomeIconProps {
     style?: React.CSSProperties
 }
 
-const Icon: React.FC<IconProps> = (props) => {
+export type IconPropsWithUndefined = IconProps | undefined
+
+const Icon: React.FC<IconPropsWithUndefined> = (props) => {
     const { className, theme, ...restProps } = props
     const classes = classNames('dd-icon', className, {
         [`icon-${theme}`]: theme
     })
 
     return (
-        <FontAwesomeIcon className={classes} {...restProps}/>
+        <FontAwesomeIcon className={classes} {...restProps} />
     )
 }
 

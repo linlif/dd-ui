@@ -17,7 +17,12 @@ const SubMenu: React.FC<ISubmenuProps> = ({ index, title, className, children, d
     const context = useContext(MenuContent)
     const opendedSubMenus = context.defaultOpenSubMenus as Array<string>
     const isOpen = (index && context.mode === 'vertical') ? opendedSubMenus.includes(index) : false
+
+    
     const [subMenuOpen, setOpen] = useState(isOpen)
+    
+    console.log('subMenuOpen~~~', subMenuOpen)
+
     const classes = classNames(
         'dd-menuitem submenu-item',
         className,
@@ -80,7 +85,7 @@ const SubMenu: React.FC<ISubmenuProps> = ({ index, title, className, children, d
                 timeout={600}
                 classNames='slide-in-top'
                 appear
-            // unmountOnExit
+                unmountOnExit
             >
                 <ul className={subMenuClassNames} >
                     {childrenComponent}

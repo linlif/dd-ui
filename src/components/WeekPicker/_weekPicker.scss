@@ -1,0 +1,145 @@
+.dd-week-picker {
+    overflow: hidden;
+    vertical-align: top;
+    background: #fff;
+    border-radius: 2px;
+    // box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+    transition: margin 0.3s;
+    width: 500px;
+    // padding: 30px;
+    .picker-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 8px;
+        color: rgba(0, 0, 0, 0.85);
+        border-bottom: 1px solid #f0f0f0;
+        font-size: 14px;
+        font-variant: tabular-nums;
+        min-height: 40px;
+        margin-bottom: 20px;
+        transition: color 0.3s;
+        button {
+            border: none;
+            background: transparent;
+            padding: 5px 8px 8px 5px;
+        }
+        .super-prev-icon {
+            cursor: pointer;
+            position: relative;
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            transform: rotate(-45deg);
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.25);
+            &:hover {
+                color: #1890ff;
+                border-color: #1890ff;
+                &::before {
+                }
+            }
+            &::before {
+                position: absolute;
+                top: 0;
+                left: 0;
+                display: inline-block;
+                width: 7px;
+                height: 7px;
+                border: 0 solid;
+                border-width: 1.5px 0 0 1.5px;
+                content: "";
+            }
+            &::after {
+                position: absolute;
+                top: 4px;
+                left: 4px;
+                display: inline-block;
+                width: 7px;
+                height: 7px;
+                border: 0 solid;
+                border-width: 1.5px 0 0 1.5px;
+                content: "";
+            }
+        }
+        .title {
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 40px;
+        }
+        .super-next-btn {
+            cursor: pointer;
+            color: rgba(0, 0, 0, 0.25);
+            transform: rotate(135deg);
+            position: relative;
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            &:hover {
+                color: #1890ff;
+            }
+            &::before {
+                position: absolute;
+                top: 0;
+                left: 0;
+                display: inline-block;
+                width: 7px;
+                height: 7px;
+                border: 0 solid;
+                border-width: 1.5px 0 0 1.5px;
+                content: "";
+            }
+            &::after {
+                position: absolute;
+                top: 4px;
+                left: 4px;
+                display: inline-block;
+                width: 7px;
+                height: 7px;
+                border: 0 solid;
+                border-width: 1.5px 0 0 1.5px;
+                content: "";
+            }
+        }
+    }
+    .weeks {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        .rows {
+            flex: 1;
+            display: flex;
+            .cols {
+                display: inline-block;
+                min-width: 55px;
+                padding: 8px 10px;
+                text-align: center;
+                background: #f0f0f0;
+                cursor: pointer;
+                flex-shrink: 0;
+                margin-bottom: 10px;
+                border-radius: 2px;
+                color: rgba(0, 0, 0, 0.85);
+                font-size: 14px;
+                font-weight: 400px;
+                &:hover {
+                    background: #1890ff;
+                    color: white;
+                }
+                &.disabled {
+                    color: rgba(0, 0, 0, 0.25);
+                }
+                &.actived {
+                    background: #1890ff;
+                    color: white;
+                }
+            }
+            .cols:not(:last-child) {
+                margin-right: 10px;
+            }
+            // .cols:not(:nth-child(8n + 0)) {
+            //     margin-right: 20px;
+            // }
+        }
+    }
+}

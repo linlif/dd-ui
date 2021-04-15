@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import Button, { ButtonProps } from './button';
+import Icon, { IconProps } from '../Icon/icon'
 
 export default {
     title: 'dd-ui/Button',

@@ -1,6 +1,7 @@
 import React, { ReactNode, ButtonHTMLAttributes, AnchorHTMLAttributes, FC, useEffect, useState } from 'react'
 import classNames from 'classnames'
-import Icon, { IconProps } from '../Icon'
+import Icon, { IconProps } from '../Icon/icon'
+import { IconDefinition, IconLookup, IconName, IconPrefix, IconPathData, IconPack } from '@fortawesome/fontawesome-common-types';
 
 // export enum ButtonSize {
 //     Medium = 'md',
@@ -19,6 +20,7 @@ export type ButtonType = 'primary' | 'default' | 'danger' | 'link' | 'dash'
 export type ButtonSize = 'lg' | 'md' | 'sm'
 export type Shape = 'circle' | 'round' | 'normal'
 
+export type btnIconProps = IconProps | undefined | IconName
 interface BaseButtonProps {
     className?: string;
     disabled?: boolean;
@@ -29,7 +31,7 @@ interface BaseButtonProps {
     backgroundColor?: string,
     onClick: () => void,
     loading?: boolean,
-    icon?: IconProps,
+    icon?: btnIconProps,
     block?: boolean | string,
     shape?: Shape
 }
@@ -93,9 +95,9 @@ export const Button: FC<ButtonProps> = (props) => {
                 onClick={onClick}
                 {...restProps}
             >
-                {
-                    (icon || loading) ? <Icon icon={loading ? "spinner" : icon} spin={loading} /> : ''
-                }
+                {/* {
+                    icon ? <Icon icon={icon} /> : null
+                } */}
                 {
                     children && (
                         <span style={{ marginLeft: 5 }}>
@@ -114,9 +116,10 @@ export const Button: FC<ButtonProps> = (props) => {
                 style={{ backgroundColor }}
                 {...restProps}
             >
-                {
-                    (icon || loading) ? <Icon icon={loading ? "spinner" : icon} spin={loading} /> : ''
-                }
+                {/* {
+                    // (icon || loading) ? <Icon icon={loading ? "spinner" : icon} spin={loading} /> : ''
+                    icon ? <Icon icon={icon} /> : null
+                } */}
                 {
                     children && (
                         <span style={{ marginLeft: 5 }}>
