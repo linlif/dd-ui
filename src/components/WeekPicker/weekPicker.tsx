@@ -3,7 +3,7 @@
  * @author Linlif
  */
 
-import React, { Component, FC } from 'react';
+import React, { Component } from 'react';
 import moment from 'moment';
 // import 'moment/locale/zh-cn';
 
